@@ -2,13 +2,11 @@
 'use strict';
 
 const ArgumentParser = require('argparse').ArgumentParser;
-const mysqlees       = require('mysqlees');
-const mysql          = require('mysql');
 const path           = require('path');
 const fs             = require('fs');
 
 const parser = new ArgumentParser({
-    version: '1.0.1',
+    version: '1.0.2',
     addHelp: true,
     description: 'MySQLees CLI'
 });
@@ -52,11 +50,9 @@ if (args.migrate) {
                 process.exit();
         }
 
-        mysqlees.bind(mysql);
-
         for(let value of json.migration.models) {
             if (fs.existsSync(path.join(value+'.js'))) {
-                const model = require(path.join(cwd, value));
+                let model = require(path.join(cwd, value));
                 model._$schema().implementSchema(model.modelName, json.migration.connection);
                 // model._$schema() -> This is Instance of Schema
             } else {

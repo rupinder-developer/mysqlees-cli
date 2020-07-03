@@ -1,6 +1,6 @@
 {
   "name": "mysqlees-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MySQLees CLI",
   "main": "index.js",
   "bin": {
@@ -24,8 +24,6 @@
   },
   "homepage": "https://github.com/rupinder-developer/mysqlees-cli#readme",
   "dependencies": {
-    "argparse": "^1.0.10",
-    "mysql": "^2.18.1",
-    "mysqlees": "^1.1.1"
+    "argparse": "^1.0.10"
   }
 }
