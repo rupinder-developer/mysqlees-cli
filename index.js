@@ -3,11 +3,12 @@
 
 const ArgumentParser = require('argparse').ArgumentParser;
 const mysqlees       = require('mysqlees');
+const mysql          = require('mysql');
 const path           = require('path');
 const fs             = require('fs');
 
 const parser = new ArgumentParser({
-    version: '1.0.0',
+    version: '1.0.1',
     addHelp: true,
     description: 'MySQLees CLI'
 });
