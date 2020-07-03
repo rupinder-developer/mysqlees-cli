@@ -6,7 +6,7 @@ const path           = require('path');
 const fs             = require('fs');
 
 const parser = new ArgumentParser({
-    version: '1.0.2',
+    version: '1.0.3',
     addHelp: true,
     description: 'MySQLees CLI'
 });
@@ -53,7 +53,11 @@ if (args.migrate) {
         for(let value of json.migration.models) {
             if (fs.existsSync(path.join(value+'.js'))) {
                 let model = require(path.join(cwd, value));
-                model._$schema().implementSchema(model.modelName, json.migration.connection);
+                if (model && model._$schema) {
+                    model._$schema().implementSchema(model.modelName, json.migration.connection);
+                } else {
+                    console.log(`Error: Failed to parse model (${value}). Use module.exports to export your model instance.`);
+                }
                 // model._$schema() -> This is Instance of Schema
             } else {
                 console.log(`Error: Model not found!! (Invalid Path: ${value})`);
