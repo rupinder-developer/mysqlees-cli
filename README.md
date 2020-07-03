@@ -1,5 +1,7 @@
 # MySQLees CLI
 
+It is a command-line interface for MySQLees - ORM Library. (https://github.com/rupinder-developer/MySQLees) 
+
 ## Installation
 
 ```sh
