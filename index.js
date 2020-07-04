@@ -50,17 +50,28 @@ if (args.migrate) {
                 process.exit();
         }
 
+        let error = false; // Error Flag
         for(let value of json.migration.models) {
             if (fs.existsSync(path.join(value+'.js'))) {
                 let model = require(path.join(cwd, value));
-                if (model && model._$schema) {
-                    model._$schema().implementSchema(model.modelName, json.migration.connection);
-                } else {
+                if (!(model && model._$schema)) {
+                    error = true;
                     console.log(`Error: Failed to parse model (${value}). Use module.exports to export your model instance.`);
                 }
-                // model._$schema() -> This is Instance of Schema
             } else {
+                error = true;
                 console.log(`Error: Model not found!! (Invalid Path: ${value})`);
+            }
+        }
+        
+        if (error) {
+            console.log(`Error: Migration Failed!!`);
+        } else {
+            for(let value of json.migration.models) {
+                let model = require(path.join(cwd, value));
+                if (model && model._$schema) {
+                    model._$schema().implementSchema(model.modelName, json.migration.connection);
+                } 
             }
         }
     } else {
