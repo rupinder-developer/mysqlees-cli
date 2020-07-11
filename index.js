@@ -6,7 +6,7 @@ const path           = require('path');
 const fs             = require('fs');
 
 const parser = new ArgumentParser({
-    version: '1.0.3',
+    version: '1.0.5',
     addHelp: true,
     description: 'MySQLees CLI'
 });

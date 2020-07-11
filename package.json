@@ -1,6 +1,6 @@
 {
   "name": "mysqlees-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MySQLees CLI",
   "main": "index.js",
   "bin": {
